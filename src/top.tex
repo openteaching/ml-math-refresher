@@ -1,0 +1,102 @@
+% Compile: pdflatex -enable-write18 top.tex 
+% Include graphics from Hefferon book: rename file to have .eps extension 
+% VS code: re-enable auto build: latex-workshop.latex.autoBuild.run
+%
+\documentclass[9pt,aspectratio=169,xcolor=dvipsnames]{beamer}
+
+\usetheme{Singapore}
+\usecolortheme{seagull}
+
+\definecolor{TitleBlue}{RGB}{0, 90, 156}
+\setbeamercolor{frametitle}{fg=TitleBlue}
+\setbeamercolor{structure}{fg=TitleBlue}
+
+\setbeamerfont{frametitle}{series=\bfseries,parent=structure}
+\setbeamerfont{title}{size=\LARGE}
+% \usetheme[background=light,sectionstyle=style2,slidestyle=cyber,numbering=fraction,headingcolor=theme]{trigon}
+
+\usepackage{mylinsys} 
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{amsfonts} 
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc} 
+\usepackage{physics}  % \va \vb
+\usepackage{bm}
+\usepackage{upgreek}
+\usepackage{svg}
+\usepackage{algpseudocode}
+\usepackage{marvosym}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\include{myenvs}
+
+\renewcommand{\v}[1]{\bm{#1}} % vector
+\newcommand{\m}[1]{\bm{#1}} % matrix
+\renewcommand{\d}[1]{\mathop{d#1}} % differential
+\renewcommand{\ev}[1]{\mathcal{#1}} % event (probability)
+\newcommand{\E}[1]{\operatorname{E}\left[#1\right]} % expected value
+\newcommand{\const}{\mathrm{const}} % matrix
+\renewcommand{\mid}{\,|\,} % conditional "bar" (probability)
+\newcommand{\easterchallenge}[2]{
+    \begin{frame}{}
+        \begin{easterbox}  
+            #1
+        \end{easterbox}                
+    \vspace*{2mm}
+    \textbf{Answer:}\\[1mm]
+    #2
+    \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+    % manual titlepage
+    \begin{columns}[onlytextwidth]
+        \begin{column}{0.4\textwidth}
+            \vspace*{10mm}
+            \includegraphics[width=1.4\textwidth]{fig/titleimage.eps}
+            {\tiny Image by \href{https://pixabay.com/users/julia_s-4109630/}{Julia S} from
+                \href{https://pixabay.com}{Pixabay}}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \flushright
+            {A Refresher On}\\[1mm]
+            {\Huge \textbf{Machine Learning Maths}}\\[15mm]
+            {\Large CAS Machine Learning}\\[1mm]
+            {\Large Module 1: Introduction}\\[15mm]
+            Hochschule Luzern HSLU\\[1mm]
+            {March 25/26, 2023}\\
+            % \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\include{pt1}
+\include{pt1_ex}
+\include{pt2}
+\include{pt2_ex}
+\include{pt3}
+% \include{pt4}
+% \include{pt5}
+
+\begin{frame}{License}
+    \small
+    This work is based on the following works:
+    \begin{itemize}
+        \item Jim Hefferson, \emph{Linear Algebra}, 4th Edition, freely available at \url{https://hefferon.net/linearalgebra/}
+        \item Wikipedia, The Free Encyclopedia, \url{https://www.wikipedia.org/}
+        \item D2L.ai: Interactive Deep Learning Book with Multi-Framework Code, Math, and Discussions, freely available at \url{https://github.com/d2l-ai/d2l-en}
+    \end{itemize}
+
+    The above three works are based on Creative Commons Attribution-ShareAlike (CC BY-SA)-compatible licenses. Hence this work is again released under 
+    the same permissive Creative Commons Zero v1.0 Universal License. Sources are available at \url{https://github.com/openteaching/cas-ml1}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,505 @@
+\section{Part 1: Linear Algebra}
+
+\subsection{Vectors and Matrices}
+
+\begin{frame}{Linear Algebra}
+    \framesubtitle{Introduction}
+    What is linear algebra and where is it used?
+    \begin{itemize}
+        \item Branch of mathematics concerned with linear equations such as
+              $$a_1 x_1 + a_2 x_2 + \dots + a_n x_n = b$$
+        \item Of central important to most areas of science, mathematics, and engineering: ranging from differential equations, to modeling electrical circuits and control systems that fly aircraft, to econometry and genetics
+        \item Not just ``linear'': Non-linear systems may well be treated through a series of linear operations, e.g. first-order Taylor expansion
+        \item At the heart of most machine learning algorithms
+        \item Modern computers can process them very efficiently, still active research (DeepMind's AlphaTensor)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Vectors}
+    Properties:
+    \begin{itemize}
+        \item A vector is an object in $\mathbb{R}^n$ that is comprised of a magnitude and a direction
+        \item Often visualized as an ``arrow'' for $n=2$ or $n=3$\\
+              \begin{center}
+                  \includegraphics{gr/mp/ch1.12}
+              \end{center}
+              Note that all above arrow represent the same vector
+        \item Notation: $$\vb{x} := \mqty(x_1 \\ x_2 \\ \vdots \\ x_n)$$
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Vectors}
+    \framesubtitle{Linear Dependence}
+    \begin{boxed}
+        Given $\v x_1, \ldots \v x_m$ be vectors in $\mathbb{R}^n$.
+
+        The set $\{ \v x_1, \ldots \v x_m \}$ of these vectors \emph{linearly independent} if
+        $$c_1 \v x_1 + c_2 \v x_2 + \ldots + c_m \v x_m \quad \text{implies} \quad c_1 = c_2 = \ldots = c_m = 0$$
+    \end{boxed}
+    Likewise, any two vectors $\v x_i$ and $\v x_j$ are \emph{linearly dependent} if $\v x_1 = c \v x_2$
+    for some real $c \neq 0$\\[3mm]
+\end{frame}
+
+\easterchallenge{
+    Determine whether or not the two vectors $\mqty(6, 2, 8, 4)^\top$
+    and $\mqty(21,  7, 28, 14)^\top$ are linearly dependent
+}{
+    They are linearly dependent, $3.5 \; \times$ the first vector yields the second
+}
+
+\begin{frame}{Vectors}
+    \begin{columns}[onlytextwidth]
+        \begin{column}{0.5\textwidth}
+            Algebraic properties:
+            \begin{itemize}
+                \item Additive identity: $\forall \v{x} : \exists \v{0}$ s.t. $\v{x} + \v{0} = \v{x}$
+                \item Multiplicative identity: $1\, \v{x} = \v{x}$
+                \item Commutativity: $\vb{x} + \vb{y} = \vb{y} + \vb{x}$
+                \item Associativity: $(\vb{x} + \vb{y}) + \vb{z} = \vb{y} + (\vb{x} + \vb{z})$
+                \item Additive inverse: $\forall \v{v} : \exists \bar{\v{x}} := -\v{x}$  s.t. $\v{x} + \bar{\v{x}} = \v{x} + (-\v{x}) = \v{0}$
+                \item Distributivity:
+                      \begin{itemize}
+                          \item $\forall \v{v}, r$: $r(\v{x} + \v{y}) = r \v{x} + r \v{y}$
+                          \item $\forall \v{v}, r, s$: $(r+s) \v{x} = r \v{x} + s \v{x}$
+                      \end{itemize}
+            \end{itemize}
+            For $\v{x}, \v{y}, \v{z} \in \mathbb{R}^n$ and $r$, $s$ scalars
+
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=0.5\textwidth]{gr/mp/ch1.13} \\[7mm]
+                \includegraphics[width=0.4\textwidth]{gr/mp/ch1.14} \\[7mm]
+                \includegraphics[width=0.9\textwidth]{gr/mp/ch1.17}
+            \end{center}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Matrices}
+    Basic properties:
+    \begin{itemize}
+        \item A matrix is an object in $\mathbb{R}^{m \times n}$, i.e. a rectangular array of numbers.
+        \item Central object in linear algebra, enable actual operations, e.g. addition or multiplication
+        \item Widely used, even outside linear algebra e.g. in graph theory (adjacency matrices)
+        \item Notation:
+              $$ \m{A} := \begin{pmatrix}
+                      a_{11} & a_{12} & \cdots & a_{1n} \\
+                      a_{21} & a_{22} & \cdots & a_{2n} \\
+                      \vdots & \vdots & \ddots & \vdots \\
+                      a_{m1} & a_{m2} & \cdots & a_{mn}
+                  \end{pmatrix}
+              $$
+        \item Note that for now we choose $a_{ij}$ to be in $\mathbb{R}$, however, $a_{ij} \in \mathbb{C}$ in general
+        \item Note that algebraic properties and identities differ form those above ones for vectors (see below)
+        \item Important special case: \emph{square} matrix, $m = n$
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Matrix Multiplication (MM)}
+    Matrix product $\m{C} = \m{A}\m{B} \in \mathbb{R}^{m \times p}$ with $\m{A} \in \mathbb{R}^{m \times n}$,
+    $\m{B} \in \mathbb{R}^{n \times p}$,
+    $$\m{A}=\begin{pmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \cdots & a_{mn} \\
+        \end{pmatrix},\quad\m{B}=\begin{pmatrix}
+            b_{11} & b_{12} & \cdots & b_{1p} \\
+            b_{21} & b_{22} & \cdots & b_{2p} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            b_{n1} & b_{n2} & \cdots & b_{np} \\
+        \end{pmatrix},\quad\m{C}=\begin{pmatrix}
+            c_{11} & c_{12} & \cdots & c_{1p} \\
+            c_{21} & c_{22} & \cdots & c_{2p} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            c_{m1} & c_{m2} & \cdots & c_{mp} \\
+        \end{pmatrix}
+    $$
+    is defined s.t.
+    $$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} +\cdots + a_{in}b_{nj}= \sum_{k=1}^n a_{ik}b_{kj}$$
+
+    For instance,
+    $$
+        \begin{pmatrix}
+            a_{11} & a_{12} \\
+            \cdot  & \cdot  \\
+            a_{31} & a_{32} \\
+            \cdot  & \cdot  \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            \cdot & b_{12} & b_{13} \\
+            \cdot & b_{22} & b_{23} \\
+        \end{pmatrix}
+        = \begin{pmatrix}
+            \cdot & c_{12} & \cdot  \\
+            \cdot & \cdot  & \cdot  \\
+            \cdot & \cdot  & c_{33} \\
+            \cdot & \cdot  & \cdot  \\
+        \end{pmatrix}
+    $$
+\end{frame}
+
+\begin{frame}{MM Is Non-Commutative}
+    MM is undefined if the inner dimensions differ.
+
+    But even when the MM is defined, changing the order of the factors will change the result.
+
+    \begin{boxed}
+        For two square matrices $\m{A} \in \mathbb{R}^n, \m{B} \in \mathbb{R}^n,$ and $n > 1$, in general
+        $$\m{A}\,\m{B} \ne \m{B}\,\m{A}$$
+    \end{boxed}
+
+    Example:
+    $$\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}=\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}
+        \quad \neq \quad
+        \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$$
+\end{frame}
+
+\begin{frame}{MM Is Distributive}
+    \textbf{Distributivity}: MM is distributive with respect to matrix addition. If $\m{A}$, $\m{B}$, $\m{C}$, $\m{D}$ are
+    matrices of size $m \times n$, $n \times p$, $n \times p$, , $p \times q$, respectively, we have
+    \begin{itemize}
+        \item left distributivity: $\m{A}(\m{B} + \m{C}) = \m{AB} + \m{AC}$
+        \item right distributivity: $(\m{B} + \m{C} )\m{D} = \m{BD} + \m{CD}$
+    \end{itemize}
+
+    \textbf{Scalar multiplication}:
+    \begin{itemize}
+        \item For any $c \in \mathbb{R}$ we have $c\m{A} = \m{A}c$
+        \item Also, $c(\m{AB}) = (c \m{A})\m{B}$ and $(\m{A} \m{B})c=\m{A}(\m{B}c)$
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Matrix Transpose}
+    \begin{boxed}
+        \textbf{Transposition}\\
+        For any matrix $\m{A} = [a_{ij}]$, its transpose is defined to be
+        $$\m{A}^\top  = [a_{ji}]$$
+    \end{boxed}
+
+    Example:
+    $$
+        \begin{pmatrix}
+            1 & 2 \\
+            3 & 4 \\
+            5 & 6
+        \end{pmatrix}^{\operatorname{T}}
+        =
+        \begin{pmatrix}
+            1 & 3 & 5 \\
+            2 & 4 & 6
+        \end{pmatrix}
+    $$
+\end{frame}
+
+\begin{frame}{Matrix Transpose: Identities}
+    Some useful matrix identities related to its transpose:
+    \begin{boxed}
+        \begin{itemize}
+            \item $(\m{A^\top})^\top = \m{A}$
+            \item $\left(\m{A} + \m{B}\right)^\top = \m{A}^\top + \m{B}^\top$
+            \item $\left(\m{A}_1 \m{A}_2 \ldots \m{A}_{k-1} \m{A}_k\right)^\top = \m{A}_k^\top \m{A}_{k-1}^\top \ldots \m{A}_2^\top \m{A}_1^\top \quad \text{ e.g., }(\m{AB})^\top = \m{B}^\top\m{A}^\top$
+            \item $(c\m{A})^\top = c \m{A}^\top$
+            \item $\det \m{A} = \det \m{A}^\top$
+            \item $\text{If}\, \forall i,j: a_{ij} \in \mathbb{R}\, \Rightarrow \,\m{A}^\top \m{A} \succeq 0 \quad \text{i.e., $\m{A}$ PSD}$
+            \item $(\m{A}^{-1})^\top = (\m{A}^\top)^{-1}$
+            \item $\text{If }\,\m{A} \in \mathbb{R}^{n\times n}\,\text{then eigenvalues unchanged under transposition}$
+        \end{itemize}
+    \end{boxed}
+\end{frame}
+
+\begin{frame}{Matrix Rank}
+    Various definitions exists, all equivalent.
+    \begin{boxed}
+        We define
+        $$\rank \m A := \text{number of linearly independent rows (or columns)}$$
+    \end{boxed}
+
+    Example: The matrix
+    $$\begin{pmatrix}1&0&1\\-2&-3&1\\3&3&0\end{pmatrix}$$
+    is of $\rank 2$ (do you see why?)
+\end{frame}
+
+\subsection{Determinants, Definiteness, Trace, Inverse}
+
+\begin{frame}{Determinants}
+    The determinant of a \emph{square} matrix $\m A$ is scalar that characterizes certain properties of $\m A$.
+    Most importantly, the determinant is nonzero iff the matrix is invertible\\[5mm]
+
+    Due to being expensive to compute, explicit use of determinants in machine learning applications is rare\\[5mm]
+
+    Computation of the determinant of $\m A \in \mathbb{R}^n$:
+    \begin{itemize}
+        \item $n = 1$: $\det a = a$
+        \item $n = 2$: $\det \begin{pmatrix} a & b\\c & d \end{pmatrix}=ad-bc$
+        \item $n = 3$: $\det \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix}= aei + bfg + cdh - ceg - bdi - afh$
+        \item $n > 3$: Usually computed via decomposition (see below)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Definiteness}
+    For a \emph{symmetric} matrix $\m A \in \mathbb{R}^{n \times n}$ and
+    $\v x \in \mathbb{R}^n \setminus \{\v 0\}$ consider $$s := \v x^\top \m A \v x.$$
+
+    Then, $\m A$ is called
+    \begin{itemize}
+        \item \emph{positive-definite} (PSD) if $s > 0$ $\forall \v x$
+        \item \emph{positive-semidefinite} (PD) if $s \geq 0$ $\forall \v x$
+        \item \emph{negative-semidefinite} (NSD) if $s \leq 0$ $\forall \v x$
+        \item \emph{negative-definite} (ND) if $s < 0$ $\forall \v x$
+        \item and \emph{indefinite} otherwise
+    \end{itemize}
+
+    Example:
+    The identity matrix $\m I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ is positive-definite. To see this, let $\v x = \mqty(a \\ b)$ and consider
+    $$\v{x}^\top \m I \v{x} = \begin{pmatrix} a & b \end{pmatrix}^\top \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = a^2 + b^2$$
+    which is strictly positive for all $\v x \neq \v 0$.
+\end{frame}
+
+\begin{frame}{Matrix Trace}
+    The trace of a \emph{square} matrix $\m A \in \mathbb{R}^{n \times n}$ is commonly defined as the sum of its diagonal elements:
+    $$\tr \m{A} = \sum_{i=1}^n a_{ii} = a_{11} + a_{22} + \dots + a_{nn}.$$
+
+    Example:
+    $$
+        \tr \begin{pmatrix}
+            1  & 0  & 3  \\
+            11 & 5  & 2  \\
+            6  & 12 & -5
+        \end{pmatrix} = 1 + 5 + (-5) = 1
+    $$
+
+    Properties:
+    \begin{itemize}
+        \item Linearity: $\tr(\m{A} + \m{B}) = \tr(\m{A}) + \tr(\m{B})$ and $\tr(c\m{A}) = c \tr(\m{A})$
+        \item $\tr \m A = \tr \m A^\top$
+        \item $\tr(\m{A}\m{B}\m{C}\m{D}) = \tr(\m{B}\m{C}\m{D}\m{A}) = \tr(\m{C}\m{D}\m{A}\m{B}) = \tr(\m{D}\m{A}\m{B}\m{C})$
+              and as a special case $\tr(\m A \m B) =  \tr(\m B \m A)$
+        \item Trace as the sum of eigenvalues $\lambda_i$ of $\m A$: $\tr(\mathbf{A}) = \sum_{i=1}^n \lambda_i$
+    \end{itemize}
+
+\end{frame}
+
+\easterchallenge{Determine whether or not the real symmetric matrix $$\m A = \mqty(2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2)$$
+    is positive-definite.}
+{   $\m A$ is PD since for any non-zero column vector $\v z = \mqty(a & b & c)^\top$:
+    $$
+        \v{z}^\top \m A \v{z} = \left(\v{z}^\top \m M\right) \v{z}
+        = \begin{pmatrix} (2a - b) & (-a + 2b - c) & (-b + 2c) \end{pmatrix}
+        \begin{pmatrix} a \\ b \\ c \end{pmatrix} = \ldots =  a^2 + (a - b)^2 + (b - c)^2 + c^2 > 0
+    $$
+}
+
+\subsection{Matrix Inversion and Decompositions}
+
+\begin{frame}{Matrix Inverse}
+    The inverse matrix $\m A^{-1}$ to a regular matrix $\m A$ is defined s.t.
+    $$\m A \m A^{-1} = \m A^{-1} \m A = \m I$$
+    with $\m I$ then identity matrix
+
+    Example: The inverse of the real matrix
+    $$\displaystyle \m A = \begin{pmatrix} 2 & 1 \\ 6 & 4 \end{pmatrix} \quad \text{is} \quad \m A^{-1} = \begin{pmatrix} 2 & -\tfrac{1}{2} \\ -3 & 1 \end{pmatrix}$$
+    Verify this:
+    $$
+        \m A \m A^{-1} = \begin{pmatrix} 2 & 1 \\ 6 & 4 \end{pmatrix} \begin{pmatrix} 2 & -\tfrac{1}{2} \\ -3 & 1 \end{pmatrix}
+        = \begin{pmatrix} 4-3 & -1+1 \\ 12-12 & -3+4 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \m I
+    $$
+\end{frame}
+
+\begin{frame}{Matrix Inverse}
+    When is a matrix $\m A$ invertible? Many equivalent conditions exist (``Invertible Matrix Theorem''):
+    \begin{itemize}
+        \item $\m A$ is row- or column-equivalent to the $n \times n$ identity matrix $\m{I}_n$ $\Rightarrow$ Gaussian Elimination
+        \item The columns of A are linearly independent
+        \item $\m A$ has full rank, $\rank \m A = n$
+        \item $0$ is \emph{not} an eigenvalue of $\m A$ $\Rightarrow$ Definiteness
+        \item $\det A \neq 0$
+    \end{itemize}
+
+    Inversion plays an important part in the solution of linear systems of equations:
+    $$\m A \v x = \v b \quad \Longleftrightarrow \quad \v x = \m A^{-1} \v b$$
+    Closely related to rank: For instance, if $\rank \m A = n$ (full rank), the system
+    \begin{itemize}
+        \item $\m A \v x = \v 0$ has only the trivial solution $\v x = 0$
+        \item $\m A \v x = \v b$ has exactly one solution for each $\v b \in \mathbb{R}^n$
+    \end{itemize}
+    In practice, computing the inverse is costly and numerically delicate---avoid whenever possible
+\end{frame}
+
+\begin{frame}{Linear Systems}
+    \begin{center}
+        \begin{minipage}[b]{1.8in}
+            \raisebox{-2pt}[8pt][0pt]{\small \begin{tabular}{@{}l}
+                    \small \textit{Unique solution}
+                \end{tabular}}
+            \begin{center}
+                \includegraphics{gr/mp/ch1.3} \\[.75ex]
+                \small $\begin{linsys}{2}
+                        3x  &+  &2y  &=  &7   \\
+                        x   &-  &y   &=  &-1
+                    \end{linsys}$
+            \end{center}
+        \end{minipage}
+        \hspace*{0em}
+        \begin{minipage}[b]{1.8in}
+            \raisebox{-2pt}[8pt][0pt]{\small \begin{tabular}{@{}l}
+                    \small \textit{No solutions}
+                \end{tabular}}
+            \begin{center}
+                \includegraphics{gr/mp/ch1.4} \\[.75ex]
+                \small $\begin{linsys}{2}
+                        3x  &+  &2y  &=  &7   \\
+                        3x  &+  &2y  &=  &4
+                    \end{linsys}$
+            \end{center}
+        \end{minipage}
+        \hspace*{0em}
+        \begin{minipage}[b]{1.8in}
+            \raisebox{-2pt}[8pt][0pt]{\small \begin{tabular}[t]{@{}l}
+                    \textit{Infinitely many} \\
+                    \textit{solutions}
+                \end{tabular}}
+            \begin{center}
+                \includegraphics{gr/mp/ch1.5}         \\[.75ex]
+                \small $ \begin{linsys}{2}
+                        3x  &+  &2y  &=  &7   \\
+                        6x  &+  &4y  &=  &14
+                    \end{linsys}$
+            \end{center}
+        \end{minipage}
+    \end{center}
+\end{frame}
+
+\easterchallenge{
+    Find the coefficients $a$, $b$, and $c$ so that the graph of $f(x) = a x^2 + b x + c$ passes
+    through the points $(1, 2)$, $(-1, 6)$, and $(2, 3)$
+}{
+    % \begin{verbatim}
+    %     A = np.array([[1, 1, 1], [1, -1, 1], [4, 2, 1]])
+    %     b = np.array([2, 6, 3])
+    %     print(np.linalg.solve(A, b))  # => [ 1. -2.  3.]                
+    % \end{verbatim}
+    $a=1$, $b=-2$, $c=3$
+}
+
+\begin{frame}{Matrix Inverse: Identities}
+    Some useful matrix identities to inversion:
+    \begin{boxed}
+        \begin{itemize}
+            \item $(\mathbf A^{-1})^{-1} = \mathbf A$
+            \item $(k \mathbf A)^{-1} = k^{-1} \mathbf A^{-1}$ for any scalar $k \neq 0$
+            \item $(\mathbf A^\top)^{-1} = (\mathbf A^{-1})^\top$
+            \item For invertible matrices $\m A_i \in \mathbb{R}^{n \times n}$, $(\mathbf A_1 \mathbf A_2 \cdots \mathbf A_{k-1} \mathbf A_k)^{-1} = \mathbf A_k^{-1} \mathbf A_{k-1}^{-1} \cdots \mathbf A_2^{-1} \mathbf A_1^{-1}$
+            \item $\det \mathbf A^{-1} = (\det \mathbf A)^{-1}$
+        \end{itemize}
+    \end{boxed}
+\end{frame}
+
+\begin{frame}{Matrix Decompositions}
+    \framesubtitle{Eigendecomposition}
+    The Eigendecomposition factorizes a diagonalizable matrix into a its canonical form,
+    represented by \emph{eigenvalues} and \emph{eigenvectors}. Particularly important special case
+    in machine learning: real, symmetric matrices
+
+    \begin{boxed}
+        A vector $\v x \in \mathbb{R}^n \setminus \{\v 0\}$ is an eigenvector of a square $N \times N$ matrix $\m A$, if it satisfies
+        $$\m A \v x = \lambda \v x$$
+        for some scalar $\lambda$. Then $\lambda$ is called the eigenvalue corresponding to eigenvector $\v x$.
+    \end{boxed}
+
+    \textbf{Computation}
+    \begin{itemize}
+        \item Characteristic polynomial $p(\lambda) := \det (\m A \m I - \lambda) = 0$ yields up to $N$ distinct eigenvalues $\lambda_i$
+        \item Each $\lambda_i$ gives rise to a specific eigenvalue equation $(\m A  - \lambda \m I)\v v_i = \v 0$,
+              yielding the eigenvectors $\v v_i$
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Matrix Decompositions}
+    \framesubtitle{Lower-upper (LU) Decomposition}
+
+    \begin{boxed}
+        The LU decomposition factors a square matrix $\m A$ into a lower triangular and an upper triangular matrix:
+        $$\m A = \m L \m U$$
+    \end{boxed}
+
+    Example: An invertible $3 \times 3$ matrix $\m A$ can be factored as
+    $$
+        \begin{pmatrix}
+            a_{11} & a_{12} & a_{13} \\
+            a_{21} & a_{22} & a_{23} \\
+            a_{31} & a_{32} & a_{33}
+        \end{pmatrix} =
+        \begin{pmatrix}
+            \ell_{11} & 0         & 0         \\
+            \ell_{21} & \ell_{22} & 0         \\
+            \ell_{31} & \ell_{32} & \ell_{33}
+        \end{pmatrix}
+        \begin{pmatrix}
+            u_{11} & u_{12} & u_{13} \\
+            0      & u_{22} & u_{23} \\
+            0      & 0      & u_{33}
+        \end{pmatrix}.
+    $$
+    Remarks:
+    \begin{itemize}
+        \item Typical strategy used by computers to solve square systems of equations
+        \item Often ``LU'' actually refers to  ``LUP'' where $\m P$ is a permutation matrix (``partial pivoting'')
+        \item Any square matrix $\m A$ admits LUP and PLU factorizations. If $\m A$ is invertible, then it admits LU factorization
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Matrix Decompositions}
+    \framesubtitle{Lower-upper (LU) Decomposition}
+    LU decompositions find wide-spread application from solving linear equations, to inverting a matrix,
+    to computation of the determinant. \\[5mm]
+
+    \textbf{Example}: Solve a system of linear equations with LUP\\
+    Given the system $\m A \v x = \v b$ and the decomposition $\m P \m A = \m L \m U$, rewrite the problem
+    $$\m A \v x = \v b \quad \Longleftrightarrow \quad \m P \m A \v x = \m P \v b \quad \Longleftrightarrow \quad \m L \m U \v x = \m P \v b$$
+    Then $\v x$ can be found by
+    \begin{enumerate}
+        \item first solving $\m L \v y = \m P \v b$ for $\v y$ (forward substitution)
+        \item second solving $\m U \v x = \v y$ for $\v x$ (backward substitution)
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Matrix Decompositions}
+    \framesubtitle{Cholesky Decomposition}
+    Why Cholesky? As a special case of LU for PD matrices, about twice as efficient to compute
+
+    \begin{boxed}
+        The Cholesky decomposition of an invertible matrix $\m A$ is defined as $$\m A = \m L \m L^\top$$
+        where $\m L$ is a real lower triangular matrix with positive diagonal entries
+    \end{boxed}
+
+    Wide-spread applications:
+    \begin{itemize}
+        \item Linear least squares: efficient solutions of linear system arising from partial differential equations
+        \item Non-linear optimization: numerical stability in Quasi-Newton by avoiding direct updates of the Hessian
+        \item Monte Carlo simulations: produce correlated samples from uniform ones
+        \item Kalman filters: forcing the system covariance matrix to remain positive semi-definite
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Matrix Decompositions}
+    \framesubtitle{Singular Value Decomposition (SVD)}
+    SVD generalizes the eigendecomposition of a square matrix to any $m \times n$ matrix.
+
+    \begin{boxed}
+        The SVD decomposes a real $m \times n$ matrix $\m A$ as follows,
+        $$\m A = \m U \m \Sigma \m V^\top$$
+        with $\m U$ and $\m V$ are real orthogonal matrices
+        and $\m \Sigma $ a $m \times n$ rectangular diagonal matrix w
+    \end{boxed}
+
+    If M is real, then U and V can be guaranteed to be real orthogonal matrices; in such contexts, the SVD is often denoted   $\displaystyle \mathbf {U\Sigma V} ^{\mathsf {T}}$
+\end{frame}
+

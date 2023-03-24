@@ -1,0 +1,10 @@
+\begin{algorithmic}
+    \State Initialize parameter vector $\v w$ and set learning rate $\eta$
+    \While{termination criterion not satisfied}
+        \State randomly shuffle samples in training set
+        \For{$i \gets 1, n$}
+            \State $\v w \gets \v w - \eta \nabla Q_i(\v w)$
+        \EndFor
+    \EndWhile
+\end{algorithmic}
+

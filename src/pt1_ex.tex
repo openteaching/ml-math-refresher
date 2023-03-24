@@ -1,0 +1,30 @@
+
+\begin{frame}{Paper exercises}
+    \small
+    \begin{itemize}
+        \item Does $\mqty(1,0,2,1)$  lie on the line through \( (-2,1,1,0) \) and \( (5,10,-1,4) \)?
+        \item For what value(s) of $a$ does the system have nontrivial solutions?
+              \begin{align*}
+                  x_1 + 2 x_2 + x_3      & = 0 \\
+                  -x_1 - x_2 + x_3       & = 0 \\
+                  3 x_1 + 4 x_2 + a\,x_3 & = 0
+              \end{align*}
+
+              %Solution:
+              %https://yutsumura.com/a-condition-that-a-linear-system-has-nontrivial-solutions/        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Exercises with Python}
+    \small
+    \begin{itemize}
+        \item Implement your own matrix multiplication in pure Python; measure speed for a $1000 \times 1000$ matrix;
+              then use numpy for the multiplication and compare
+        \item Compute the SVD of a random $m \times n$ matrix $\m A$ using your implementation of choice and
+              numerically compare the reconstructed matrix $\m U \m \Sigma \m V^\top$ with $\m A$
+        \item Verify numerically the identity $(\m A^{-1})^\top = (\m A^\top)^{-1}$
+        \item Implement your own solver for linear systems using LU decomposition; use \texttt{scipy.linalg.lu}
+              for the decomposition and implement the foward- and backward substitution yourself
+        \item Given a set of $m$ vectors in $\mathbb{R}^n$, determine whether it is linearly independent
+    \end{itemize}
+\end{frame}

@@ -1,0 +1,16 @@
+\RequirePackage{array} % TLC p465
+\RequirePackage{pifont}
+\makeatletter
+%% math-mode column types ------------------
+\newcolumntype{\@R}{>{$}r<{$}}
+    \newcolumntype{\@L}{>{$}l<{$}}
+\newcolumntype{\@C}{>{$}c<{$}}
+\newcounter{@dingctr}
+\newcommand{\@wding}{\ding{\value{@dingctr}}\stepcounter{@dingctr}}
+\newcommand{\@dinglabel}{\@wding}
+\newenvironment{linsys}[1]{%
+    \setcounter{@dingctr}{192}%
+    \begin{tabular}{*{#1}{\@R\@C}\@R}}%
+        {\end{tabular}\setcounter{@dingctr}{192}}
+\makeatother
+\endinput

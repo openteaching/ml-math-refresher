@@ -1,0 +1,39 @@
+\renewenvironment{boxed}
+{
+    \par\addvspace{0.5em}\noindent
+
+    \definecolor{blizzard}{rgb}{0.9375, 0.96875, 0.99609375}
+    \setbeamercolor{postit}{fg=black,bg=blizzard}    
+    
+    \begin{beamercolorbox}[sep=0.25em,rounded=true,wd=\textwidth]{postit}
+        }
+        {
+    \end{beamercolorbox}
+
+    \par\addvspace{0.5em}
+}
+
+\newenvironment{easterbox}
+{
+    \par\addvspace{0.75em}\noindent
+
+    \definecolor{mintgreen}{RGB}{144, 238, 144}
+    \setbeamercolor{easterboxc}{fg=black, bg=mintgreen}
+
+    \begin{beamercolorbox}[sep=0.4em,rounded=true,wd=\textwidth]{easterboxc}
+
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.15\textwidth}
+                \hspace*{2mm}
+                \includegraphics[width=0.7\textwidth]{fig/easterrabbit.eps}
+            \end{column}
+            \begin{column}{0.85\textwidth}
+                }
+                {
+            \end{column}
+        \end{columns}
+
+    \end{beamercolorbox}
+
+    \par\addvspace{0.75em}
+}
