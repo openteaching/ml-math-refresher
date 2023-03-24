@@ -1,0 +1,125 @@
+%!PS
+%%BoundingBox: -27 -20 175 49 
+%%HiResBoundingBox: -26.45741 -19.40852 174.99602 48.54988 
+%%Creator: MetaPost 2.01
+%%CreationDate: 2023.03.11:0104
+%%Pages: 1
+%*Font: cmsy10 8.96631 9.96265 01:8000000000004
+%*Font: eurm10 8.96631 9.96265 30:f0000000000010800b
+%*Font: eufm10 8.96631 9.96265 2b:a
+%*Font: eusm10 8.96631 9.96265 66:c8
+%*Font: cmex10 8.96631 9.96265 12:c00000030003
+%*Font: msbm10 8.96631 9.96265 52:8
+%*Font: eurm7 6.97385 6.97385 78:e
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+ 1 1 1 setrgbcolor 0 0.79701 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 2 setlinecap 1 setlinejoin 10 setmiterlimit
+newpath 0.00143 0 moveto
+-18.88261 -17.80452 lineto stroke
+newpath 0.00143 0 moveto
+86.32907 -5.08633 lineto stroke
+ 0.79701 0 dtransform exch truncate exch idtransform pop setlinewidth
+newpath 0.00143 0 moveto
+0.00148 46.94589 lineto stroke
+ 0 0 0 setrgbcolor 0 0.3985 dtransform truncate idtransform setlinewidth pop
+newpath 0.00143 0 moveto
+-18.88261 -17.80452 lineto stroke
+newpath 0.00143 0 moveto
+86.32907 -5.08633 lineto stroke
+ 0.3985 0 dtransform exch truncate exch idtransform pop setlinewidth
+newpath 0.00143 0 moveto
+0.00148 46.94589 lineto stroke
+ 1 0 0 setrgbcolor 0 0.3985 dtransform truncate idtransform setlinewidth pop
+gsave -0.19925 0 translate newpath -4.76668 -4.4955 moveto 0 0 rlineto stroke
+ grestore
+gsave -0.19925 0 translate newpath -9.99995 -9.42957 moveto 0 0 rlineto stroke
+ grestore
+gsave -0.19925 0 translate newpath -15.77003 -14.86974 moveto 0 0 rlineto stroke
+ grestore
+ 0 0 0 setrgbcolor
+gsave -0.19925 0 translate newpath 18.43088 -1.08585 moveto 0 0 rlineto stroke
+ grestore
+gsave -0.19925 0 translate newpath 37.27917 -2.19637 moveto 0 0 rlineto stroke
+ grestore
+gsave -0.19925 0 translate newpath 56.56047 -3.33238 moveto 0 0 rlineto stroke
+ grestore
+gsave -0.19925 0 translate newpath 76.29126 -4.4949 moveto 0 0 rlineto stroke
+ grestore
+gsave -0.19925 0 translate newpath 0.00145 18.46161 moveto 0 0 rlineto stroke
+ grestore
+gsave -0.19925 0 translate newpath 0.00146 37.34279 moveto 0 0 rlineto stroke
+ grestore
+ 1 1 1 setrgbcolor 0 1.59402 dtransform truncate idtransform setlinewidth pop
+newpath 3.82169 -16.80898 moveto
+69.13913 46.07906 lineto stroke
+ 0.7 0.7 0.7 setrgbcolor 0 0.79701 dtransform truncate idtransform setlinewidth pop
+newpath 3.82169 -16.80898 moveto
+69.13913 46.07906 lineto stroke
+newpath 0.00143 0 moveto
+34.58405 12.80942 lineto stroke
+newpath 31.53458 10.22101 moveto
+34.58405 12.80942 lineto
+30.58423 12.78677 lineto
+ closepath
+gsave fill grestore stroke
+newpath 0.00143 0 moveto
+57.89137 35.24982 lineto stroke
+newpath 55.39229 32.12619 moveto
+57.89137 35.24982 lineto
+53.96913 34.46338 lineto
+ closepath
+gsave fill grestore stroke
+ 0 0 0 setrgbcolor
+newpath 34.58405 12.80942 moveto
+57.89137 35.24982 lineto stroke
+newpath 56.13258 31.65738 moveto
+57.89137 35.24982 lineto
+54.23488 33.62839 lineto
+ closepath
+gsave fill grestore stroke
+75.02992 41.88707 moveto
+(0) cmex10 8.96631 fshow
+75.02992 25.74756 moveto
+(@) cmex10 8.96631 fshow
+82.87552 35.63837 moveto
+(1) eurm10 8.96631 fshow
+82.87552 23.72316 moveto
+(2) eurm10 8.96631 fshow
+82.87552 11.80797 moveto
+(1) eurm10 8.96631 fshow
+87.35872 41.88707 moveto
+(1) cmex10 8.96631 fshow
+87.35872 25.74756 moveto
+(A) cmex10 8.96631 fshow
+97.19682 23.80186 moveto
+(+) eufm10 8.96631 fshow
+105.96793 23.80186 moveto
+(t) eurm10 8.96631 fshow
+111.69942 23.80186 moveto
+(\001) cmsy10 8.96631 fshow
+116.18462 41.88707 moveto
+(0) cmex10 8.96631 fshow
+116.18462 25.74756 moveto
+(@) cmex10 8.96631 fshow
+124.03012 35.63837 moveto
+(-) eufm10 8.96631 fshow
+130.80872 35.63837 moveto
+(1) eurm10 8.96631 fshow
+127.41942 23.72316 moveto
+(1) eurm10 8.96631 fshow
+127.41942 11.80797 moveto
+(1) eurm10 8.96631 fshow
+135.29192 41.88707 moveto
+(1) cmex10 8.96631 fshow
+135.29192 25.74756 moveto
+(A) cmex10 8.96631 fshow
+-26.45741 -19.40852 moveto
+(x) eurm7 6.97385 fshow
+89.32907 -6.03128 moveto
+(y) eurm7 6.97385 fshow
+-7.13402 45.34189 moveto
+(z) eurm7 6.97385 fshow
+showpage
+%%EOF

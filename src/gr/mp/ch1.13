@@ -1,0 +1,53 @@
+%!PS
+%%BoundingBox: -30 -17 87 24 
+%%HiResBoundingBox: -29.19807 -16.16635 86.7972 23.80177 
+%%Creator: MetaPost 2.01
+%%CreationDate: 2023.03.11:0104
+%%Pages: 1
+%*Font: eurm10 8.96631 9.96265 30:f00000000000108002
+%*Font: cmmi10 8.96631 9.96265 7e:8
+%*Font: eufm10 8.96631 9.96265 2d:8
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+ 0 0 0 setrgbcolor 0 0.79701 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 2 setlinecap 1 setlinejoin 10 setmiterlimit
+newpath 0 14.39978 moveto
+28.79956 14.39978 lineto stroke
+newpath 25.04091 13.03172 moveto
+28.79956 14.39978 lineto
+25.04091 15.76784 lineto
+ closepath
+gsave fill grestore stroke
+11.46783 17.39978 moveto
+(~) cmmi10 8.96631 fshow
+12.17613 17.39978 moveto
+(v) eurm10 8.96631 fshow
+newpath 0 -14.39978 moveto
+-28.79956 -14.39978 lineto stroke
+newpath -25.04091 -13.03172 moveto
+-28.79956 -14.39978 lineto
+-25.04091 -15.76784 lineto
+ closepath
+gsave fill grestore stroke
+-20.01274 -10.65558 moveto
+(-) eufm10 8.96631 fshow
+-13.94254 -10.65558 moveto
+(~) cmmi10 8.96631 fshow
+-13.23415 -10.65558 moveto
+(v) eurm10 8.96631 fshow
+newpath 0 0 moveto
+86.39868 0 lineto stroke
+newpath 82.64003 -1.36806 moveto
+86.39868 0 lineto
+82.64003 1.36806 lineto
+ closepath
+gsave fill grestore stroke
+38.73409 3 moveto
+(3) eurm10 8.96631 fshow
+42.50888 3 moveto
+(~) cmmi10 8.96631 fshow
+43.21729 3 moveto
+(v) eurm10 8.96631 fshow
+showpage
+%%EOF
