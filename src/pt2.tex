@@ -140,11 +140,11 @@
 \end{frame}
 
 \easterchallenge{Find the derivative of the sigmoid function
-    $$\sigma(x) = \frac{1}{1 + e^-x}$$
+    $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
     and express it using the sigmoid function itself.
     Hint: Remember that in general $\frac{1}{1 + a} = \frac{1 + a - 1}{1 + a} = 1 - \frac{1}{1 + a}$
 }{
-    $$\frac{d}{\d \sigma} \frac{1}{1 + e^-x} = \ldots
+    $$\frac{d}{\d \sigma} \frac{1}{1 + e^{-x}} = \ldots
         = \frac{1}{1 + e^{-x}} \frac{e^{-x}}{1 + e^{-x}}
         = \frac{1}{1 + e^{-x}} \frac{1 + e^{-x} - 1}{1 + e^{-x} }
         = \frac{1}{1 + e^{-x}}\left( 1 - \frac{1}{1 + e^{-x} }\right)
@@ -545,9 +545,9 @@
     $$Q_i(\v w) = \frac12 (\hat y_i - y_i)^2$$
     in the usual samples $\{(x_i, y_i)\}_{i=1}^N$, compare the resulting update rules:
     \begin{align*}
-        \text{Classical SGD:}               & \quad \v w_{k + 1} = \v w_k + \eta (y_i - \v x_i' \v w_k) \v x_i \\
+        \text{Classical SGD:}               & \quad \v w_{k + 1} = \v w_k + \eta (y_i - \v x_i^\top \v w_k) \v x_i \\
         \text{Implicit SGD (closed-form!):} & \quad \v w_{k + 1} =
-        \v w_k + \frac{\eta}{1 + \eta \left\|\v x_i\right\|^2} \left(y_i - \v x_i' \v w_k\right) \v x_i
+        \v w_k + \frac{\eta}{1 + \eta \left\|\v x_i\right\|^2} \left(y_i - \v x_i^\top \v w_k\right) \v x_i
     \end{align*}
 
     Note the normalizing effect on $\eta$, resulting in numerically stable procedure for virtually all $\eta$
@@ -565,7 +565,7 @@
     Continue the iteration for one more step to find the next weight vector $\v w_{349}$.
 }{
     \begin{align*}
-        \v w_{349} & = \v w_{348} + \frac{\eta}{1 + \eta \left\|\v x_i\right\|^2} \left(y_i - \v x_i' \v w_k\right) \v x_i \\
+        \v w_{349} & = \v w_{348} + \frac{\eta}{1 + \eta \left\|\v x_i\right\|^2} \left(y_i - \v x_i^\top \v w_k\right) \v x_i \\
                    & = \mqty(5 \\ -3) + \frac{0.04}{1 + 0.04 \times 25} \left(57 - 27 \right) \mqty(3 \\ -4) \\
                    & = \mqty(6.8 \\ -5.4)
     \end{align*}

@@ -410,7 +410,7 @@
         If you want the car, what's best to do? a) stay, b) switch, c) makes no difference\\
         Hint: Use Python or Bayes' theorem
     }{
-        WLOG you pick door 1 and the host opens door 2 or 3. Let $D := \text{``number of door with the car behind''} \in \{1,2,3\}$,
+        With loss of generality, you pick door 1 and the host opens door 2 or 3. Let $D := \text{``number of the door with the car behind''} \in \{1,2,3\}$,
         and likewise $H := \text{number of door which host opens}$. At the end of the game there's two options, $d=1$ and $d=3$:\\
         $$P(D = d \mid H = 2) = \frac{P(H = 2 \mid D = d)\, P(D = d)}{P(H = 2)}$$
         $$
@@ -529,38 +529,38 @@
             \begin{column}{0.7\textwidth}
                 Setting:
                 \begin{itemize}
-                    \item Given single parameter $\theta$ representing the probability that a coin flip is heads
+                    \item Given a single, unknown parameter $\theta$: Probability that a coin flip is heads
                     \item Assume ``uniformative prior'' $\Rightarrow$ drop $P(\theta)$ from Bayes' theorem
-                    \item Observed data: "HHHTHTTHHHHHT", i.e. $n_H = 9$ heads and $n_T = 4$ tails
+                    \item Data: ``HHHTHTTHHHHHT'', i.e. $n_H = 9$ heads, $n_T = 4$ tails
                 \end{itemize}
                 \vspace*{3mm}
 
-                Question: What is our best guess for the probability that the coin comes up heads?\\
-                {\tiny Despite everyone would correctly guess $9/13$, MLE provides
-                a structured approach which equally applies to vastly more complex situations}\\[3mm]
-
-                Answer: Assume samples independent $\Rightarrow$ probabilities multiply. Likelihood becomes
-                $$P(X \mid \theta) = \theta^{n_H}(1-\theta)^{n_T} = P(X \mid \theta) = \theta^9(1-\theta)^4$$
+                Question: What is the probability that the coin comes up heads?\\
             \end{column}
             \begin{column}{0.3\textwidth}
                 \begin{center}
                     \includegraphics[width=\textwidth]{fig/prob_mle.eps}
                 \end{center}
-
             \end{column}
         \end{columns}
+
+        Answer: Assume samples independent $\Rightarrow$ probabilities multiply. Likelihood becomes
+        $$P(X \mid \theta) = \theta^{n_H}(1-\theta)^{n_T} = P(X \mid \theta) = \theta^9(1-\theta)^4$$
+
         Then maximize the likelihood: The first-order condition
         $$
-            \begin{aligned}
-                0 & = \frac{d}{d\theta} P(X \mid \theta)
-                = \frac{d}{d\theta} \theta^9(1-\theta)^4            \\
-                  & = 9\theta^8(1-\theta)^4 - 4\theta^9(1-\theta)^3
+            \frac{d}{d\theta} P(X \mid \theta)
+                = \frac{d}{d\theta} \theta^9(1-\theta)^4        
+                = 9\theta^8(1-\theta)^4 - 4\theta^9(1-\theta)^3
                 = \theta^8(1-\theta)^3(9-13\theta)
-            \end{aligned}
+                = 0
         $$
         has three solutions: $0$, $1$ and $9/13$. First two are minima since
-        $P(X\mid \theta=0) = P(X\mid \theta=1) = 0$. Last one assigns non-zero probability
-        to our data, hence the maximum likelihood estimate is $\hat \theta = 9/13$
+        $P(X\mid \theta=0) = P(X\mid \theta=1) = 0$. Last solution assigns non-zero probability
+        to our data, hence the maximum likelihood estimate is $\hat \theta = 9/13.$\\
+        {\tiny Note that despite everyone would correctly guess $9/13$, MLE provides
+        a structured approach which equally applies to vastly more complex situations}
+
     \end{frame}
 
     \begin{frame}{Numerical Optimization and the Negative Log-Likelihood}
@@ -678,8 +678,7 @@
 
     \begin{frame}{Distributions}
         \framesubtitle{Binomial}
-        \vspace*{-3mm}
-        Given sequence of $n$ independent experiments, each with success probability $p$. Interested in
+        Given $n$ independent experiments, each with success probability $p$. Interested in
         number of successes $X$:
         $$X = \sum_{i=1}^n X_i \quad \text{with} \quad X_i \sim \mathrm{Bernoulli}(p)
             \qquad \Longleftrightarrow \qquad X \sim \mathrm{Binomial}(n, p)
@@ -738,18 +737,17 @@
 
     \begin{frame}{Distributions}
         \framesubtitle{Gaussian}
-        \vspace*{-4mm}
 
         \begin{columns}[onlytextwidth]
-            \begin{column}{0.5\textwidth}
+            \begin{column}{0.55\textwidth}
                 The central distribution in probability theory with many unique properties because of
                 the \emph{central limit theorem}.\\[1mm]
 
-                Informally, consider the sum of $N$ i.i.d. random variables $X_i$ for an arbitrary distribution,
+                Informally, given $N$ arbitrarily distributed, i.i.d. RVs $X_i$ and
                 $$
-                    X^{(N)} = \sum_{i=1}^N X_i.
+                    X^{(N)} = \sum_{i=1}^N X_i
                 $$
-                Then, under very mild conditions,
+                their sum. Then, under mild conditions,
                 $$
                     \frac{X^{(N)} - \mu_{X^{(N)}}}{\sigma_{X^{(N)}}} \quad \sim \quad \text{approximately Gaussian}
                 $$
@@ -757,12 +755,13 @@
                 \begin{boxed}
                     \textbf{Gaussian Distribution}:
                     $$X \sim \mathcal{N}(\mu, \sigma^2)$$
+                    \vspace*{-2mm}
                     $$\text{PDF:}\qquad p_X(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
                     $$\text{Moments:}\qquad \displaystyle \mu_X = \mu \quad \sigma_X^2 = \sigma^2$$
                 \end{boxed}
 
             \end{column}
-            \begin{column}{0.5\textwidth}
+            \begin{column}{0.45\textwidth}
                 \begin{center}
                     \includegraphics[width=0.73\textwidth]{fig/prob_norm_pdf.eps}
                     \qquad
