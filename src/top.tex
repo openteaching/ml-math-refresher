@@ -1,5 +1,5 @@
-% Compile: pdflatex -enable-write18 top.tex 
-% Include graphics from Hefferon book: rename file to have .eps extension 
+% Compile: pdflatex -enable-write18 top.tex
+% Include graphics from Hefferon book: rename file to have .eps extension
 % VS code: re-enable auto build: latex-workshop.latex.autoBuild.run
 %
 \documentclass[9pt,aspectratio=169,xcolor=dvipsnames]{beamer}
@@ -15,12 +15,12 @@
 \setbeamerfont{title}{size=\LARGE}
 % \usetheme[background=light,sectionstyle=style2,slidestyle=cyber,numbering=fraction,headingcolor=theme]{trigon}
 
-\usepackage{mylinsys} 
+\usepackage{mylinsys}
 \usepackage{graphicx}
 \usepackage{grffile}
-\usepackage{amsfonts} 
+\usepackage{amsfonts}
 \usepackage{ucs}
-\usepackage[utf8x]{inputenc} 
+\usepackage[utf8x]{inputenc}
 \usepackage{physics}  % \va \vb
 \usepackage{bm}
 \usepackage{upgreek}
@@ -39,14 +39,14 @@
 \newcommand{\E}[1]{\operatorname{E}\left[#1\right]} % expected value
 \newcommand{\const}{\mathrm{const}} % matrix
 \renewcommand{\mid}{\,|\,} % conditional "bar" (probability)
-\newcommand{\easterchallenge}[2]{
+\newcommand{\conceptcheck}[2]{
     \begin{frame}{}
-        \begin{easterbox}  
+        \begin{conceptcheckbox}
             #1
-        \end{easterbox}                
-    \vspace*{2mm}
-    \textbf{Answer:}\\[1mm]
-    #2
+        \end{conceptcheckbox}
+    %\vspace*{2mm}
+    %\textbf{Answer:}\\[1mm]
+    %#2
     \end{frame}
 }
 
@@ -67,9 +67,9 @@
             {\Huge \textbf{Machine Learning Maths}}\\[15mm]
             {\Large CAS Machine Learning}\\[1mm]
             {\Large Module 1: Introduction}\\[15mm]
+            Michael Calonder\\[1mm]
             Hochschule Luzern HSLU\\[1mm]
-            {March 25/26, 2023}\\
-            % \end{center}
+            {April 19 \& 20, 2024}\\
         \end{column}
     \end{columns}
 \end{frame}
@@ -95,7 +95,7 @@
         \item D2L.ai: Interactive Deep Learning Book with Multi-Framework Code, Math, and Discussions, freely available at \url{https://github.com/d2l-ai/d2l-en}
     \end{itemize}
 
-    The above three works are based on Creative Commons Attribution-ShareAlike (CC BY-SA)-compatible licenses. Hence this work is again released under 
+    The above three works are based on Creative Commons Attribution-ShareAlike (CC BY-SA)-compatible licenses. Hence this work is again released under
     the same permissive Creative Commons Zero v1.0 Universal License. Sources are available at \url{https://github.com/openteaching/cas-ml1}
 \end{frame}
 

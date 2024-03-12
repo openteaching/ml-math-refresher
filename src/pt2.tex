@@ -139,10 +139,10 @@
     Note: ``constant multiple rule'' is a special case: $(c f(x))' = c f'(x)$ since ${d \over dx} c = 0$
 \end{frame}
 
-\easterchallenge{Find the derivative of the sigmoid function
+\conceptcheck{Find the derivative of the sigmoid function
     $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
     and express it using the sigmoid function itself.
-    Hint: Remember that in general $\frac{1}{1 + a} = \frac{1 + a - 1}{1 + a} = 1 - \frac{1}{1 + a}$
+    Hint: The identity $\frac{a}{1 + a} = \frac{a + 1 - 1}{1 + a} = 1 - \frac{1}{1 + a}$ should prove useful
 }{
     $$\frac{d}{\d \sigma} \frac{1}{1 + e^{-x}} = \ldots
         = \frac{1}{1 + e^{-x}} \frac{e^{-x}}{1 + e^{-x}}
@@ -257,7 +257,7 @@
     \end{align*}
 \end{frame}
 
-\easterchallenge{You are given 200 m of wire to make a fence around some rectangular area of side length $a$
+\conceptcheck{You are given 200 m of wire to make a fence around some rectangular area of side length $a$
     and $b$, respectively. How should you choose $a$ and $b$ s.t. the area which you are covering is maximized?}{
     $$\max_{a,b} a \, b \quad \text{s.t.} \quad 2a+2b=200
         \quad \Longleftrightarrow \quad \max_a a\, (100 - a)
@@ -553,7 +553,7 @@
     Note the normalizing effect on $\eta$, resulting in numerically stable procedure for virtually all $\eta$
 \end{frame}
 
-\easterchallenge{
+\conceptcheck{
     You are in the middle of a minimization with ISGD:
     \begin{itemize}
         \item Iteration $k = 348$, number of samples $n = 50'000$
